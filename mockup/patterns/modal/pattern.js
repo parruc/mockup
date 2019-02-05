@@ -271,10 +271,14 @@ define([
               options.onTimeout.apply(self, xhr, errorStatus);
             // on "error", "abort", and "parsererror"
             } else if (options.onError) {
-              options.onError(xhr, textStatus, errorStatus);
+              if (typeof options.onError === 'string') {
+                window[options.onError](xhr, textStatus, errorStatus);
+              } else {
+                  options.onError(xhr, textStatus, errorStatus);
+              }
             } else {
               // window.alert(_t('There was an error submitting the form.'));
-              console.log('error happened do something');
+              console.log('error happened', textStatus, ' do something');
             }
             self.emit('formActionError', [xhr, textStatus, errorStatus]);
           },
@@ -285,7 +289,11 @@ define([
             if ($(options.error, response).size() !== 0 ||
                 $(options.formFieldError, response).size() !== 0) {
               if (options.onFormError) {
-                options.onFormError(self, response, state, xhr, form);
+                if (typeof options.onFormError === 'string') {
+                  window[options.onFormError](self, response, state, xhr, form);
+                } else {
+                  options.onFormError(self, response, state, xhr, form);
+                }
               } else {
                 self.redraw(response, patternOptions);
               }
@@ -302,7 +310,11 @@ define([
             }
 
             if (options.onSuccess) {
-              options.onSuccess(self, response, state, xhr, form);
+              if (typeof options.onSuccess === 'string') {
+                window[options.onSuccess](self, response, state, xhr, form);
+              } else {
+                  options.onSuccess(self, response, state, xhr, form);
+              }
             }
 
             if (options.displayInModal === true) {
