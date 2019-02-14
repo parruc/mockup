@@ -381,8 +381,13 @@ define([
         }).done(function(response, state, xhr) {
           self.redraw(response, patternOptions);
           if (options.onSuccess) {
-            options.onSuccess(self, response, state, xhr);
+            if (typeof options.onSuccess === 'string') {
+              window[options.onSuccess](self, response, state, xhr);
+            } else {
+                options.onSuccess(self, response, state, xhr);
+            }
           }
+
           self.emit('linkActionSuccess', [response, state, xhr]);
         }).always(function(){
           self.loading.hide();
