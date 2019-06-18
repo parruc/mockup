@@ -617,6 +617,7 @@ define([
       var caption = self.$caption.val();
       if (caption) {
         html_inner += '\n' + self.dom.createHTML('figcaption', {}, caption);
+        //html_inner += '\n' + self.dom.createHTML('figcaption', { class: 'mceNonEditable' }, caption);
       }
       var html_string = self.dom.createHTML('figure', {}, html_inner);
       self.tiny.insertContent(html_string);
@@ -771,7 +772,7 @@ define([
         self.captionElm = caption;
 
         if (self.captionElm) {
-          self.$caption.val(self.captionElm.innerText);
+          self.$caption.val(self.captionElm.innerHTML);
         }
 
         if (self.imgElm) {
