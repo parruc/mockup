@@ -133,7 +133,7 @@
       'picker.date': 'node_modules/pickadate/lib/picker.date',
       'picker.time': 'node_modules/pickadate/lib/picker.time',
       'select2': 'node_modules/select2/select2',
-      'sinon': 'node_modules/sinonjs/sinon',
+      'sinon': 'node_modules/sinon/pkg/sinon-1.17.1',
       'text': 'node_modules/requirejs-text/text',
       'tinymce': 'node_modules/tinymce-builded/js/tinymce/tinymce',
       'tinymce-modern-theme': 'node_modules/tinymce-builded/js/tinymce/themes/modern/theme',
